@@ -12,6 +12,15 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+- (NSURL *)applicationDocumentsDirectory;
+- (void)setupTabViewController;
+- (void)setupLoginViewController;
+- (void)setupIntroductionViewController;
+
+/**
+ *  注册推送
+ */
+- (void)registerPush;
 
 @end
 

@@ -40,6 +40,7 @@ PODS:
   - FLEX (2.1.1)
   - FontAwesome+iOS (0.1.4)
   - hpple (0.2.0)
+  - iCarousel (1.8.3)
   - iVersion (1.11.4)
   - JazzHands (2.0.0)
   - MarqueeLabel (2.5.0)
@@ -73,6 +74,7 @@ PODS:
   - PPiAwesomeButton (1.5.2):
     - FontAwesome+iOS
   - RBBAnimation (0.4.0)
+  - RDVTabBarController (1.1.9)
   - ReactiveCocoa (2.3.1):
     - ReactiveCocoa/UI (= 2.3.1)
   - ReactiveCocoa/Core (2.3.1):
@@ -85,6 +87,9 @@ PODS:
     - RBBAnimation (~> 0.3)
     - SDCAutoLayout (~> 2.0)
   - SDCAutoLayout (2.0.3)
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
   - SSKeychain (1.2.3)
   - TMCache (2.1.0)
   - TPKeyboardAvoiding (1.2.4)
@@ -100,6 +105,7 @@ DEPENDENCIES:
   - evernote-cloud-sdk-ios (= 2.0.2)
   - FLEX (~> 2.0)
   - hpple (= 0.2.0)
+  - iCarousel
   - iVersion (= 1.11.4)
   - JazzHands (= 2.0.0)
   - MarqueeLabel (= 2.5.0)
@@ -109,9 +115,11 @@ DEPENDENCIES:
   - NYXImagesKit (= 2.3)
   - POP+MCAnimate (= 2.0.1)
   - PPiAwesomeButton (= 1.5.2)
+  - RDVTabBarController
   - ReactiveCocoa (= 2.3.1)
   - RegexKitLite-NoWarning (= 1.1.0)
   - SDCAlertView (= 2.5.2)
+  - SDWebImage
   - SSKeychain (= 1.2.3)
   - TMCache (= 2.1.0)
   - TPKeyboardAvoiding (= 1.2.4)
@@ -128,6 +136,7 @@ SPEC CHECKSUMS:
   FLEX: 27b768fcae23a313a1eb115076d429180ca9b472
   FontAwesome+iOS: 9070b682a9255ca0fdc34bcfb129ad0ba2b73b87
   hpple: 3b765f96fc2cd56ad1a49aef6f7be5cb2aa64b57
+  iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
   iVersion: 2b6ffe708672cb494ba3cab150a94800c2892e81
   JazzHands: 00002e9b1284e7fc1ac6555012e81b8942477242
   MarqueeLabel: 6b8ff6915c0536c5099ac30992b7d72f9807df20
@@ -139,10 +148,12 @@ SPEC CHECKSUMS:
   POP+MCAnimate: a99e209148c602512de487f1160a44bf78572024
   PPiAwesomeButton: 16f7279582fd36f65186b24b83ef876217363eb5
   RBBAnimation: 4b2d66f6d993febce63cd564da934985313b9c59
+  RDVTabBarController: 67794f7a7a37f8e32f046f85ac67d06ab92d624a
   ReactiveCocoa: 3fe9b233ca6db810e86681b5749488564c1179a1
   RegexKitLite-NoWarning: 365d208f8187997e33d9de8baeddfc00728596d8
   SDCAlertView: f9706c18f456ea87909f8f199704cd28e582ff27
   SDCAutoLayout: e6885bb39ab8e2ec2ff84d158f38035f025f7420
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
   TMCache: 95ebcc9b3c7e90fb5fd8fc3036cba3aa781c9bed
   TPKeyboardAvoiding: 0a40dfbb0af7c8bdae1dd457496dccfd217d85f6
@@ -151,6 +162,6 @@ SPEC CHECKSUMS:
   UMengAnalytics: 092c24aef47b6ac3c76ad51543f91156a8d7b645
   UMengSocial: 85882abe5b20aa38ad558ece71360e16b5d50909
 
-PODFILE CHECKSUM: eac20845ac205859b9fee6d5f15ea4e9cb2609a9
+PODFILE CHECKSUM: 575ffdb200c1e0ba98720e931f19faa215fa111d
 
 COCOAPODS: 1.0.1
