@@ -615,6 +615,11 @@
 		18B1E22F1DF9633F000503AA /* Coding_NetAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B1E22E1DF9633F000503AA /* Coding_NetAPIManager.m */; };
 		18B1E2321DF96377000503AA /* UnReadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B1E2311DF96377000503AA /* UnReadManager.m */; };
 		18B1E2351DF96C3A000503AA /* UIView+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B1E2341DF96C3A000503AA /* UIView+Common.m */; };
+		18B473421E7012BC00697FF6 /* JDStatusBarNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B4733D1E7012BC00697FF6 /* JDStatusBarNotification.m */; };
+		18B473431E7012BC00697FF6 /* JDStatusBarStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B4733F1E7012BC00697FF6 /* JDStatusBarStyle.m */; };
+		18B473441E7012BC00697FF6 /* JDStatusBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B473411E7012BC00697FF6 /* JDStatusBarView.m */; };
+		18B473471E70E19100697FF6 /* HtmlMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B473461E70E19100697FF6 /* HtmlMedia.m */; };
+		18B4734C1E70F16000697FF6 /* NSString+Emojize.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B4734B1E70F16000697FF6 /* NSString+Emojize.m */; };
 		18FF5A461E120D1600109697 /* TweetDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FF5A451E120D1600109697 /* TweetDetailViewController.m */; };
 		18FF5A491E120D9B00109697 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FF5A481E120D9B00109697 /* Tweet.m */; };
 		18FF5A4C1E120DC800109697 /* Tweets.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FF5A4B1E120DC800109697 /* Tweets.m */; };
@@ -1268,6 +1273,17 @@
 		18B1E2311DF96377000503AA /* UnReadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnReadManager.m; sourceTree = "<group>"; };
 		18B1E2331DF96C3A000503AA /* UIView+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Common.h"; sourceTree = "<group>"; };
 		18B1E2341DF96C3A000503AA /* UIView+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Common.m"; sourceTree = "<group>"; };
+		18B4733C1E7012BC00697FF6 /* JDStatusBarNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarNotification.h; sourceTree = "<group>"; };
+		18B4733D1E7012BC00697FF6 /* JDStatusBarNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarNotification.m; sourceTree = "<group>"; };
+		18B4733E1E7012BC00697FF6 /* JDStatusBarStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarStyle.h; sourceTree = "<group>"; };
+		18B4733F1E7012BC00697FF6 /* JDStatusBarStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarStyle.m; sourceTree = "<group>"; };
+		18B473401E7012BC00697FF6 /* JDStatusBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarView.h; sourceTree = "<group>"; };
+		18B473411E7012BC00697FF6 /* JDStatusBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarView.m; sourceTree = "<group>"; };
+		18B473451E70E19100697FF6 /* HtmlMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HtmlMedia.h; sourceTree = "<group>"; };
+		18B473461E70E19100697FF6 /* HtmlMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HtmlMedia.m; sourceTree = "<group>"; };
+		18B473491E70F16000697FF6 /* emojis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = emojis.h; sourceTree = "<group>"; };
+		18B4734A1E70F16000697FF6 /* NSString+Emojize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Emojize.h"; sourceTree = "<group>"; };
+		18B4734B1E70F16000697FF6 /* NSString+Emojize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Emojize.m"; sourceTree = "<group>"; };
 		18FF5A441E120D1500109697 /* TweetDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetDetailViewController.h; sourceTree = "<group>"; };
 		18FF5A451E120D1600109697 /* TweetDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetDetailViewController.m; sourceTree = "<group>"; };
 		18FF5A471E120D9B00109697 /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
@@ -2353,6 +2369,8 @@
 			children = (
 				18B1E1FC1DF8F447000503AA /* Login.h */,
 				18B1E1FD1DF8F447000503AA /* Login.m */,
+				18B473451E70E19100697FF6 /* HtmlMedia.h */,
+				18B473461E70E19100697FF6 /* HtmlMedia.m */,
 				18B1E1FF1DF8F4E5000503AA /* User.h */,
 				18B1E2001DF8F4E5000503AA /* User.m */,
 				18FF5A471E120D9B00109697 /* Tweet.h */,
@@ -2423,6 +2441,8 @@
 		18B1E2171DF93CD9000503AA /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				18B473481E70F16000697FF6 /* NSStringEmojize */,
+				18B4733B1E7012BC00697FF6 /* JDStatusBarNotification */,
 				18B1E2201DF940A0000503AA /* SMPageControl */,
 				18B1E2181DF93CD9000503AA /* RKSwipeBetweenViewControllers */,
 				18B1E2191DF93CD9000503AA /* XTSegmentControl */,
@@ -2455,6 +2475,29 @@
 				18B1E2221DF940A0000503AA /* SMPageControl.m */,
 			);
 			path = SMPageControl;
+			sourceTree = "<group>";
+		};
+		18B4733B1E7012BC00697FF6 /* JDStatusBarNotification */ = {
+			isa = PBXGroup;
+			children = (
+				18B4733C1E7012BC00697FF6 /* JDStatusBarNotification.h */,
+				18B4733D1E7012BC00697FF6 /* JDStatusBarNotification.m */,
+				18B4733E1E7012BC00697FF6 /* JDStatusBarStyle.h */,
+				18B4733F1E7012BC00697FF6 /* JDStatusBarStyle.m */,
+				18B473401E7012BC00697FF6 /* JDStatusBarView.h */,
+				18B473411E7012BC00697FF6 /* JDStatusBarView.m */,
+			);
+			path = JDStatusBarNotification;
+			sourceTree = "<group>";
+		};
+		18B473481E70F16000697FF6 /* NSStringEmojize */ = {
+			isa = PBXGroup;
+			children = (
+				18B473491E70F16000697FF6 /* emojis.h */,
+				18B4734A1E70F16000697FF6 /* NSString+Emojize.h */,
+				18B4734B1E70F16000697FF6 /* NSString+Emojize.m */,
+			);
+			path = NSStringEmojize;
 			sourceTree = "<group>";
 		};
 		18FF5A531E1248B400109697 /* CCell */ = {
@@ -2541,6 +2584,7 @@
 				TargetAttributes = {
 					18B1E14E1DF79C4F000503AA = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = H9X3N56YS2;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -3219,6 +3263,7 @@
 				18B1E22F1DF9633F000503AA /* Coding_NetAPIManager.m in Sources */,
 				18B1E1FE1DF8F447000503AA /* Login.m in Sources */,
 				18FF5A521E121A7800109697 /* NSString+Common.m in Sources */,
+				18B473431E7012BC00697FF6 /* JDStatusBarStyle.m in Sources */,
 				18FF5A591E1248E700109697 /* Login2FATipCell.m in Sources */,
 				18AE389D1E14BF7B00B3B114 /* EaseInputTipsView.m in Sources */,
 				18B1E2321DF96377000503AA /* UnReadManager.m in Sources */,
@@ -3231,10 +3276,14 @@
 				18FF5A621E124C1200109697 /* UITapImageView.m in Sources */,
 				18B1E1571DF79C4F000503AA /* AppDelegate.m in Sources */,
 				18B1E2161DF9391F000503AA /* MyTask_RootViewController.m in Sources */,
+				18B473421E7012BC00697FF6 /* JDStatusBarNotification.m in Sources */,
 				18B1E20D1DF9362F000503AA /* BaseNavigationController.m in Sources */,
 				18FF5A4C1E120DC800109697 /* Tweets.m in Sources */,
+				18B473471E70E19100697FF6 /* HtmlMedia.m in Sources */,
 				18B1E2101DF938A3000503AA /* BaseViewController.m in Sources */,
+				18B473441E7012BC00697FF6 /* JDStatusBarView.m in Sources */,
 				18B1E21C1DF93E30000503AA /* RKSwipeBetweenViewControllers.m in Sources */,
+				18B4734C1E70F16000697FF6 /* NSString+Emojize.m in Sources */,
 				18B1E20A1DF934A3000503AA /* RootTabViewController.m in Sources */,
 				18B1E2291DF94D89000503AA /* Message_RootViewController.m in Sources */,
 				18B1E2231DF940A0000503AA /* SMPageControl.m in Sources */,
@@ -3362,9 +3411,12 @@
 			baseConfigurationReference = 9D98FA89ED15138C1BA4B610 /* Pods-Coding_iOS_XueXi.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = H9X3N56YS2;
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Coding_iOS_XueXi/Coding_iOS_XueXi-Prefix.pch";
 				INFOPLIST_FILE = Coding_iOS_XueXi/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "yjh.Coding-iOS-XueXi";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3376,9 +3428,12 @@
 			baseConfigurationReference = 10D8D8C66E3D8CFDFA0B9742 /* Pods-Coding_iOS_XueXi.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = H9X3N56YS2;
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Coding_iOS_XueXi/Coding_iOS_XueXi-Prefix.pch";
 				INFOPLIST_FILE = Coding_iOS_XueXi/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "yjh.Coding-iOS-XueXi";
 				PRODUCT_NAME = "$(TARGET_NAME)";

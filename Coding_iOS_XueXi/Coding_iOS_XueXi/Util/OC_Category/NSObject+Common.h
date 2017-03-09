@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JDStatusBarNotification.h"
+
 
 @interface NSObject (Common)
 #pragma mark BaseURL

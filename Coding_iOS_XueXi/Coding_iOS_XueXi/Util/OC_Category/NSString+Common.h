@@ -10,6 +10,8 @@
 
 @interface NSString (Common)
 
++ (NSString *)userAgentStr;
+
 - (NSString *)URLEncoding;
 - (NSString *)URLDecoding;
 - (NSString *)sha1Str;
@@ -18,6 +20,12 @@
 - (NSURL *)urlImageWithCodePathResize:(CGFloat)width;
 - (NSURL *)urlImageWithCodePathResize:(CGFloat)width crop:(BOOL)needCrop;
 - (NSURL *)urlImageWithCodePathResizeToView:(UIView *)view;
+
+
+- (NSString *)trimWhitespace;
+
+- (NSRange)rangeByTrimmingLeftCharactersInSet:(NSCharacterSet *)characterSet;
+- (NSRange)rangeByTrimmingRightCharactersInSet:(NSCharacterSet *)characterSet;
 
 
 //转换拼音

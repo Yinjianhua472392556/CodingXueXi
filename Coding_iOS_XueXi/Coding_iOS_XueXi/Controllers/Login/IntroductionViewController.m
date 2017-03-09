@@ -9,6 +9,8 @@
 #import "IntroductionViewController.h"
 #import "SMPageControl.h"
 #import <NYXImagesKit/NYXImagesKit.h>
+#import "LoginViewController.h"
+#import "BaseNavigationController.h"
 
 @interface IntroductionViewController ()
 @property (strong, nonatomic) NSMutableDictionary *iconsDict, *tipsDict;
@@ -277,7 +279,10 @@
 }
 
 - (void)loginBtnClicked {
-
+    LoginViewController *vc = [[LoginViewController alloc] init];
+    vc.showDismissButton = YES;
+    UINavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 
