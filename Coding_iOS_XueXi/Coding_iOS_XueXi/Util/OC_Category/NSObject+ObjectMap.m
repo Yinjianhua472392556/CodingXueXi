@@ -15,28 +15,28 @@
 @implementation NSObject (ObjectMap)
 
 #pragma mark - Dictionary to Object
-
-+ (id)objectOfClass:(NSString *)object fromJSON:(NSDictionary *)dict {
++(id)objectOfClass:(NSString *)object fromJSON:(NSDictionary *)dict {
     if (!dict || ![dict isKindOfClass:[NSDictionary class]]) {
         return nil;
     }
-    
     id newObject = [[NSClassFromString(object) alloc] init];
+    
     NSDictionary *mapDictionary = [newObject propertyDictionary];
+    
     for (NSString *key in [dict allKeys]) {
         NSString *tempKey;
         if ([key isEqualToString:@"description"] || [key isEqualToString:@"hash"]) {
             tempKey = [key stringByAppendingString:@"_mine"];
-        }else {
+        }else{
             tempKey = key;
         }
         NSString *propertyName = [mapDictionary objectForKey:tempKey];
         if (!propertyName) {
             continue;
         }
-        
         // If it's a Dictionary, make into object
         if ([[dict objectForKey:key] isKindOfClass:[NSDictionary class]]) {
+            //id newObjectProperty = [newObject valueForKey:propertyName];
             NSString *propertyType = [newObject classOfPropertyNamed:propertyName];
             id nestedObj = [NSObject objectOfClass:propertyType fromJSON:[dict objectForKey:key]];
             [newObject setValue:nestedObj forKey:propertyName];
@@ -55,27 +55,24 @@
             if (!property) {
                 continue;
             }
-            
             NSString *classType = [newObject typeFromProperty:property];
             
             // check if NSDate or not
             if ([classType isEqualToString:@"T@\"NSDate\""]) {
                 //                1970年的long型数字
                 NSObject *obj = [dict objectForKey:key];
-                if ([object isKindOfClass:[NSNumber class]]) {
+                if ([obj isKindOfClass:[NSNumber class]]) {
                     NSNumber *timeSince1970 = (NSNumber *)obj;
                     NSTimeInterval timeSince1970TimeInterval = timeSince1970.doubleValue/1000;
                     NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeSince1970TimeInterval];
                     [newObject setValue:date forKey:propertyName];
-
-                }else {
+                }else{
                     //                            日期字符串
                     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
                     [formatter setDateFormat:OMDateFormat];
                     [formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:OMTimeZone]];
                     NSString *dateString = [[dict objectForKey:key] stringByReplacingOccurrencesOfString:@"T" withString:@" "];
                     [newObject setValue:[formatter dateFromString:dateString] forKey:propertyName];
-
                 }
             }
             else {
@@ -87,7 +84,6 @@
                 }
             }
         }
-
     }
     
     return newObject;

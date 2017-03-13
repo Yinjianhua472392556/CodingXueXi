@@ -11,6 +11,10 @@
 #import "Login2FATipCell.h"
 #import "Coding_NetAPIManager.h"
 #import "EaseInputTipsView.h"
+#import "StartImagesManager.h"
+#import <NYXImagesKit/NYXImagesKit.h>
+#import <UIImage+BlurredFrame/UIImage+BlurredFrame.h>
+#import "AppDelegate.h"
 
 @interface LoginViewController ()
 @property (nonatomic, strong) Login *myLogin;
@@ -22,6 +26,8 @@
 @property (nonatomic, strong) UIImageView *bgBlurredView, *iconUserView;
 @property (nonatomic, strong) UIButton *dismissButton;
 @property (strong, nonatomic) UIButton *loginBtn, *buttonFor2FA, *cannotLoginBtn;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+
 @property (nonatomic, strong) EaseInputTipsView *inputTipsView;
 
 @property (assign, nonatomic) BOOL is2FAUI;
@@ -130,9 +136,24 @@
 - (UIImageView *)bgBlurredView {
     if (!_bgBlurredView) {
         //背景图片
+        UIImageView *bgView = [[UIImageView alloc] initWithFrame:kScreen_Bounds];
+        bgView.contentMode = UIViewContentModeScaleAspectFit;
+        UIImage *bgImage = [[StartImagesManager shareManager] curImage].image;
         
-        //黑色遮罩
+        CGSize bgImageSize = bgImage.size, bgViewSize = bgView.frame.size;
+        if (bgImageSize.width > bgViewSize.width && bgImageSize.height > bgViewSize.height) {
+            bgImage = [bgImage scaleToSize:bgViewSize usingMode:NYXResizeModeAspectFill];
+        }
+        bgImage = [bgImage applyLightEffectAtFrame:CGRectMake(0, 0, bgImage.size.width, bgImage.size.height)];
+        bgView.image = bgImage;
 
+        //黑色遮罩
+        UIColor *blackColor = [UIColor blackColor];
+        [bgView addGradientLayerWithColors:@[(id)[blackColor colorWithAlphaComponent:0.3].CGColor,
+                                             (id)[blackColor colorWithAlphaComponent:0.3].CGColor]
+                                 locations:nil
+                                startPoint:CGPointMake(0.5, 0.0) endPoint:CGPointMake(0.5, 1.0)];
+        _bgBlurredView = bgView;
     }
     return _bgBlurredView;
 }
@@ -223,7 +244,6 @@
                                                         }
                                                     }];
     
-    
     _cannotLoginBtn = ({
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
         [button.titleLabel setFont:[UIFont systemFontOfSize:14]];
@@ -274,7 +294,6 @@
 }
 
 
-#pragma mark Btn Clicked
 
 
 
@@ -344,5 +363,121 @@
     
     return cell;
 }
+
+
+
+#pragma mark Btn Clicked
+
+- (void)sendLogin {
+    NSString *tipMsg = self.is2FAUI? [self loginTipFor2FA] : [_myLogin goToLoginTipWithCaptcha:_captchaNeeded];
+    if (tipMsg) {
+        kTipAlert(@"%@", tipMsg);
+        return;
+    }
+    
+    [self.view endEditing:YES];
+    if (!_activityIndicator) {
+        _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        CGSize captchaViewSize = _loginBtn.bounds.size;
+        _activityIndicator.hidesWhenStopped = YES;
+        [_activityIndicator setCenter:CGPointMake(captchaViewSize.width / 2, captchaViewSize.height / 2)];
+        [_loginBtn addSubview:_activityIndicator];
+    }
+    
+    [_activityIndicator startAnimating];
+    
+    __weak typeof(self) weakSelf = self;
+    _loginBtn.enabled = NO;
+    
+    if (self.is2FAUI) {
+        [[Coding_NetAPIManager sharedManager] request_Login_With2FA:self.otpCode andBlock:^(id data, NSError *error) {
+            weakSelf.loginBtn.enabled = YES;
+            [weakSelf.activityIndicator stopAnimating];
+            if (data) {
+                [Login setPreUserEmail:self.myLogin.email]; //记住登录账号
+                [(AppDelegate *)[UIApplication sharedApplication].delegate setupTabViewController];
+            }else {
+                NSString *status_expired = error.userInfo[@"msg"][@"user_login_status_expired"];
+                if (status_expired.length > 0) {
+                    [weakSelf changeUITo2FAWithGK:nil];
+                }
+            }
+        }];
+    }else {
+        [[Coding_NetAPIManager sharedManager] request_Login_WithPath:self.myLogin.toPath Params:self.myLogin.toParams andBlock:^(id data, NSError *error) {
+            weakSelf.loginBtn.enabled = YES;
+            [weakSelf.activityIndicator stopAnimating];
+            if (data) {
+                [Login setPreUserEmail:self.myLogin.email];//记住登录账号
+                [((AppDelegate *)[UIApplication sharedApplication].delegate) setupTabViewController];
+                [self doSomethingAfterLogin];
+            }else {
+                NSString *global_key = error.userInfo[@"msg"][@"two_factor_auth_code_not_empty"];
+                if (global_key.length > 0) {
+                    [weakSelf changeUITo2FAWithGK:global_key];
+                }else if (error.userInfo[@"msg"][@"user_need_activate"]) {
+                    [NSObject showError:error];
+                }else {
+                    [NSObject showError:error];
+                    [weakSelf refreshCaptchaNeeded];
+                }
+            }
+        }];
+    }
+    
+}
+
+
+- (void)doSomethingAfterLogin {
+    User *curUser = [Login curLoginUser];
+    if (curUser.email.length && !curUser.email_validation.boolValue) {
+        UIAlertView *alertView = [UIAlertView bk_alertViewWithTitle:@"激活邮箱" message:@"该邮箱尚未激活，请尽快去邮箱查收邮件并激活账号。如果在收件箱中没有看到，请留意一下垃圾邮件箱子（T_T）"];
+        [alertView bk_setCancelButtonWithTitle:@"取消" handler:nil];
+        [alertView bk_addButtonWithTitle:@"重发激活邮件" handler:nil];
+        [alertView bk_setDidDismissBlock:^(UIAlertView *alert, NSInteger index) {
+            if (index == 1) {
+                [self sendActivateEmail];
+            }
+        }];
+        [alertView show];
+    }
+}
+
+
+- (void)sendActivateEmail {
+    [[Coding_NetAPIManager sharedManager] request_SendActivateEmail:[Login curLoginUser].email block:^(id data, NSError *error) {
+        if (data) {
+            [NSObject showHudTipStr:@"邮件已发送"];
+        }
+    }];
+}
+
+- (void)dismissButtonClicked {
+    if (self.is2FAUI) {
+        self.is2FAUI = NO;
+    }else {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
+
+
+#pragma mark 2FA
+
+- (void)changeUITo2FAWithGK:(NSString *)global_key {
+
+}
+
+
+- (NSString *)loginTipFor2FA {
+    NSString *tipStr = nil;
+    if (self.otpCode.length <= 0) {
+        tipStr = @"动态验证码不能为空";
+    }else if (![self.otpCode isPureInt] || self.otpCode.length != 6) {
+        tipStr = @"动态验证码必须是一个6位数字";
+    }
+    return tipStr;
+}
+
 
 @end

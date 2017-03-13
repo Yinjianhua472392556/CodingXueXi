@@ -18,4 +18,48 @@
     self.layer.mask = maskLayer;
 }
 
+
+
+- (void)setY:(CGFloat)y{
+    CGRect frame = self.frame;
+    frame.origin.y = y;
+    self.frame = frame;
+}
+- (void)setX:(CGFloat)x{
+    CGRect frame = self.frame;
+    frame.origin.x = x;
+    self.frame = frame;
+}
+
+
+- (void)doBorderWidth:(CGFloat)width color:(UIColor *)color cornerRadius:(CGFloat)cornerRadius{
+    self.layer.masksToBounds = YES;
+    self.layer.cornerRadius = cornerRadius;
+    self.layer.borderWidth = width;
+    if (!color) {
+        self.layer.borderColor = kColorDDD.CGColor;
+    }else{
+        self.layer.borderColor = color.CGColor;
+    }
+}
+
+
+
+- (void)addGradientLayerWithColors:(NSArray *)cgColorArray locations:(NSArray *)floatNumArray startPoint:(CGPoint )startPoint endPoint:(CGPoint)endPoint{
+    CAGradientLayer *layer = [CAGradientLayer layer];
+    layer.frame = self.bounds;
+    if (cgColorArray && [cgColorArray count] > 0) {
+        layer.colors = cgColorArray;
+    }else{
+        return;
+    }
+    if (floatNumArray && [floatNumArray count] == [cgColorArray count]) {
+        layer.locations = floatNumArray;
+    }
+    layer.startPoint = startPoint;
+    layer.endPoint = endPoint;
+    [self.layer addSublayer:layer];
+}
+
+
 @end

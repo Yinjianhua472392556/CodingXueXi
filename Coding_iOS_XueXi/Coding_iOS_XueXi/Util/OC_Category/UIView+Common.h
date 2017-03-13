@@ -10,7 +10,16 @@
 
 @interface UIView (Common)
 
-- (void)addLineUp:(BOOL)hasUp andDown:(BOOL)hasDown andColor:(UIColor *)color;
+- (void)doBorderWidth:(CGFloat)width color:(UIColor *)color cornerRadius:(CGFloat)cornerRadius;
 
+
+- (void)addLineUp:(BOOL)hasUp andDown:(BOOL)hasDown andColor:(UIColor *)color;
 - (void)addRoundingCorners:(UIRectCorner)corners cornerRadii:(CGSize)cornerRadii;
+
+- (void)setY:(CGFloat)y;
+- (void)setX:(CGFloat)x;
+
+
+- (void)addGradientLayerWithColors:(NSArray *)cgColorArray locations:(NSArray *)floatNumArray startPoint:(CGPoint )aPoint endPoint:(CGPoint)endPoint;
+
 @end

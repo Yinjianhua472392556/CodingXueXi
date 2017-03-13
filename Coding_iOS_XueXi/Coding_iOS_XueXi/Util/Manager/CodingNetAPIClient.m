@@ -13,9 +13,9 @@
 
 @implementation CodingNetAPIClient
 static CodingNetAPIClient *_sharedClient = nil;
-static dispatch_once_t onceToken;
 
 + (id)sharedJsonClient {
+    static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _sharedClient = [[CodingNetAPIClient alloc] initWithBaseURL:[NSURL URLWithString:[NSObject baseURLStr]]];
     });
@@ -37,7 +37,7 @@ static dispatch_once_t onceToken;
     self.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/plain", @"text/javascript", @"text/json", @"text/html", nil];
     [self.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [self.requestSerializer setValue:url.absoluteString forHTTPHeaderField:@"Referer"];
-    self.securityPolicy.allowInvalidCertificates = YES;
+    self.securityPolicy.allowInvalidCertificates = NO;
     return self;
 }
 
@@ -46,101 +46,101 @@ static dispatch_once_t onceToken;
     [self requestJsonDataWithPath:aPath withParams:params withMethodType:method autoShowError:YES andBlock:block];
 }
 
-- (void)requestJsonDataWithPath:(NSString *)aPath withParams:(NSDictionary *)params withMethodType:(NetworkMethod)method autoShowError:(BOOL)autoShowError andBlock:(void (^)(id, NSError *))block {
+- (void)requestJsonDataWithPath:(NSString *)aPath
+                     withParams:(NSDictionary*)params
+                 withMethodType:(NetworkMethod)method
+                  autoShowError:(BOOL)autoShowError
+                       andBlock:(void (^)(id data, NSError *error))block{
     if (!aPath || aPath.length <= 0) {
         return;
     }
-    
     //log请求数据
     DebugLog(@"\n===========request===========\n%@\n%@:\n%@", kNetworkMethodName[method], aPath, params);
     aPath = [aPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-
     //    发起请求
     switch (method) {
-        case Get: {
+        case Get:{
             //所有 Get 请求，增加缓存机制
             NSMutableString *localPath = [aPath mutableCopy];
             if (params) {
                 [localPath appendString:params.description];
             }
-            [self GET:aPath parameters:params success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+            [self GET:aPath parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 DebugLog(@"\n===========response===========\n%@:\n%@", aPath, responseObject);
                 id error = [self handleResponse:responseObject autoShowError:autoShowError];
                 if (error) {
                     responseObject = [NSObject loadResponseWithPath:localPath];
                     block(responseObject, error);
-                }else {
+                }else{
                     if ([responseObject isKindOfClass:[NSDictionary class]]) {
                         //判断数据是否符合预期，给出提示
-                        if (responseObject[@"data"][@"too_many_files"]) {
-                            if (autoShowError) {
-                                [NSObject showHudTipStr:@"文件太多，不能正常显示"];
+                        if ([responseObject[@"data"] isKindOfClass:[NSDictionary class]]) {
+                            if (responseObject[@"data"][@"too_many_files"]) {
+                                if (autoShowError) {
+                                    [NSObject showHudTipStr:@"文件太多，不能正常显示"];
+                                }
                             }
                         }
                         [NSObject saveResponseData:responseObject toPath:localPath];
                     }
                     block(responseObject, nil);
                 }
-            } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                 DebugLog(@"\n===========response===========\n%@:\n%@\n%@", aPath, error, operation.responseString);
                 !autoShowError || [NSObject showError:error];
                 id responseObject = [NSObject loadResponseWithPath:localPath];
-                block(responseObject,error);
+                block(responseObject, error);
             }];
-
-        }
-            break;
-        case Post: {
-        [self POST:aPath parameters:params success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-            DebugLog(@"\n===========response===========\n%@:\n%@", aPath, responseObject);
-            id error = [self handleResponse:responseObject autoShowError:autoShowError];
-            if (error) {
+            break;}
+        case Post:{
+            [self POST:aPath parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                DebugLog(@"\n===========response===========\n%@:\n%@", aPath, responseObject);
+                id error = [self handleResponse:responseObject autoShowError:autoShowError];
+                if (error) {
+                    block(nil, error);
+                }else{
+                    block(responseObject, nil);
+                }
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                DebugLog(@"\n===========response===========\n%@:\n%@\n%@", aPath, error, operation.responseString);
+                !autoShowError || [NSObject showError:error];
                 block(nil, error);
-            }else{
-                block(responseObject, nil);
-            }
-        } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-            DebugLog(@"\n===========response===========\n%@:\n%@\n%@", aPath, error, operation.responseString);
-            !autoShowError || [NSObject showError:error];
-            block(nil, error);
-        }];
-        }
-            break;
-        case Put: {
-        [self PUT:aPath parameters:params success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-            DebugLog(@"\n===========response===========\n%@:\n%@", aPath, responseObject);
-            id error = [self handleResponse:responseObject autoShowError:autoShowError];
-            if (error) {
+            }];
+            break;}
+        case Put:{
+            [self PUT:aPath parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                DebugLog(@"\n===========response===========\n%@:\n%@", aPath, responseObject);
+                id error = [self handleResponse:responseObject autoShowError:autoShowError];
+                if (error) {
+                    block(nil, error);
+                }else{
+                    block(responseObject, nil);
+                }
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                DebugLog(@"\n===========response===========\n%@:\n%@\n%@", aPath, error, operation.responseString);
+                !autoShowError || [NSObject showError:error];
                 block(nil, error);
-            }else{
-                block(responseObject, nil);
-            }
-        } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-            DebugLog(@"\n===========response===========\n%@:\n%@\n%@", aPath, error, operation.responseString);
-            !autoShowError || [NSObject showError:error];
-            block(nil, error);
-        }];
-        }
-            break;
-        case Delete: {
-        [self DELETE:aPath parameters:params success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-            DebugLog(@"\n===========response===========\n%@:\n%@", aPath, responseObject);
-            id error = [self handleResponse:responseObject autoShowError:autoShowError];
-            if (error) {
+            }];
+            break;}
+        case Delete:{
+            [self DELETE:aPath parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                DebugLog(@"\n===========response===========\n%@:\n%@", aPath, responseObject);
+                id error = [self handleResponse:responseObject autoShowError:autoShowError];
+                if (error) {
+                    block(nil, error);
+                }else{
+                    block(responseObject, nil);
+                }
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                DebugLog(@"\n===========response===========\n%@:\n%@\n%@", aPath, error, operation.responseString);
+                !autoShowError || [NSObject showError:error];
                 block(nil, error);
-            }else{
-                block(responseObject, nil);
-            }
-        } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-            DebugLog(@"\n===========response===========\n%@:\n%@\n%@", aPath, error, operation.responseString);
-            !autoShowError || [NSObject showError:error];
-            block(nil, error);
-        }];
-        }
-            break;
+            }];
+            break;}
         default:
             break;
     }
+    
 }
 
 

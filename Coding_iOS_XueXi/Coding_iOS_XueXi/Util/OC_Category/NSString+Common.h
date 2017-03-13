@@ -31,4 +31,17 @@
 //转换拼音
 - (NSString *)transformToPinyin;
 
+
+//判断是否为整形
+- (BOOL)isPureInt;
+
+//判断是否为浮点形
+- (BOOL)isPureFloat;
+
+//判断是否是手机号码或者邮箱
+- (BOOL)isPhoneNo;
+- (BOOL)isEmail;
+- (BOOL)isGK;
+
+
 @end

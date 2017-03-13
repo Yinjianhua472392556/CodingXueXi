@@ -10,11 +10,12 @@
 
 @interface PhoneCodeButton()
 @property (nonatomic, strong, readwrite) NSTimer *timer;
-@property (nonatomic, assign) NSTimeInterval durationToValidity;
-@property (nonatomic, strong) UIView *lineView;
+@property (assign, nonatomic) NSTimeInterval durationToValidity;
+@property (strong, nonatomic) UIView *lineView;
 @end
 
 @implementation PhoneCodeButton
+
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -26,11 +27,10 @@
         _lineView.backgroundColor = [UIColor colorWithHexString:@"0xD8D8D8"];
         [self addSubview:_lineView];
     }
-
     return self;
 }
 
-- (void)setEnabled:(BOOL)enabled{
+- (void)setEnabled:(BOOL)enabled {
     [super setEnabled:enabled];
     UIColor *foreColor = [UIColor colorWithHexString:enabled? @"0x3BBD79": @"0xCCCCCC"];
     [self setTitleColor:foreColor forState:UIControlStateNormal];
@@ -41,24 +41,14 @@
     }
 }
 
+
 - (void)startUpTimer {
     _durationToValidity = 60;
     if (self.isEnabled) {
         self.enabled = NO;
     }
-    
     [self setTitle:[NSString stringWithFormat:@"%.0f 秒", _durationToValidity] forState:UIControlStateNormal];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(redrawTimer:) userInfo:nil repeats:YES];
-}
-
-- (void)redrawTimer:(NSTimer *)timer {
-    _durationToValidity--;
-    if (_durationToValidity > 0) {
-        self.titleLabel.text = [NSString stringWithFormat:@"%.0f 秒", _durationToValidity];//防止 button_title 闪烁
-        [self setTitle:[NSString stringWithFormat:@"%.0f 秒", _durationToValidity] forState:UIControlStateNormal];
-    }else {
-        [self invalidateTimer];
-    }
 }
 
 - (void)invalidateTimer {
@@ -70,6 +60,14 @@
     self.timer = nil;
 }
 
-
+- (void)redrawTimer:(NSTimer *)timer {
+    _durationToValidity--;
+    if (_durationToValidity > 0) {
+        self.titleLabel.text = [NSString stringWithFormat:@"%.0f 秒", _durationToValidity];//防止 button_title 闪烁
+        [self setTitle:[NSString stringWithFormat:@"%.0f 秒", _durationToValidity] forState:UIControlStateNormal];
+    }else {
+        [self invalidateTimer];
+    }
+}
 
 @end

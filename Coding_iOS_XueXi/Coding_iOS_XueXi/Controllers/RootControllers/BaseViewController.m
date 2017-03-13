@@ -201,7 +201,6 @@ typedef NS_ENUM(NSUInteger, AnalyseMethodType) {
     if (!linkStr || linkStr.length == 0) {
         return;
     }
-    
     BOOL isNewVC = YES;
     UIViewController *vc = [self analyseVCFromLinkStr:linkStr analyseMethod:AnalyseMethodTypeLazyCreate isNewVC:&isNewVC];
     if (vc && isNewVC) {
@@ -265,7 +264,6 @@ typedef NS_ENUM(NSUInteger, AnalyseMethodType) {
 }
 
 #pragma mark Login
-
 - (void)loginOutToLoginVC {
     [Login doLogout];
     [(AppDelegate *)[UIApplication sharedApplication].delegate setupLoginViewController];

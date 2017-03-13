@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface NSURL (Common)
-
++(BOOL)addSkipBackupAttributeToItemAtURL:(NSURL *)URL;
+- (NSDictionary *)queryParams;
 @end

@@ -116,4 +116,37 @@
     return [tempString uppercaseString];
 }
 
+//判断是否为整形
+- (BOOL)isPureInt {
+    NSScanner *scan = [NSScanner scannerWithString:self];
+    int val;
+    return [scan scanInt:&val] && [scan isAtEnd];
+}
+
+//判断是否为浮点形
+- (BOOL)isPureFloat{
+    NSScanner* scan = [NSScanner scannerWithString:self];
+    float val;
+    return[scan scanFloat:&val] && [scan isAtEnd];
+}
+
+//判断是否是手机号码或者邮箱
+- (BOOL)isPhoneNo {
+    NSString *phoneRegex = @"[0-9]{1,15}";
+    NSPredicate *phoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneRegex];
+    return [phoneTest evaluateWithObject:self];
+}
+
+- (BOOL)isEmail{
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:self];
+}
+
+- (BOOL)isGK{
+    NSString *gkRegex = @"[A-Z0-9a-z-_]{3,32}";
+    NSPredicate *gkTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", gkRegex];
+    return [gkTest evaluateWithObject:self];
+}
+
 @end

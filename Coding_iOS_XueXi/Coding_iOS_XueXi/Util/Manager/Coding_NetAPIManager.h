@@ -21,5 +21,11 @@
 
 - (void)request_CaptchaNeededWithPath:(NSString *)path
                              andBlock:(void (^)(id data, NSError *error))block;
-
+- (void)request_Login_With2FA:(NSString *)otpCode
+                     andBlock:(void (^)(id data, NSError *error))block;
+- (void)request_Login_WithPath:(NSString *)path
+                        Params:(id)params
+                      andBlock:(void (^)(id data, NSError *error))block;
+- (void)request_SendActivateEmail:(NSString *)email
+                            block:(void (^)(id data, NSError *error))block;
 @end
