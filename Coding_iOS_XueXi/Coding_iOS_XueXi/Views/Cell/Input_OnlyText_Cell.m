@@ -1,32 +1,33 @@
 //
 //  Input_OnlyText_Cell.m
-//  Coding_iOS_XueXi
+//  Coding_iOS
 //
-//  Created by apple on 16/12/27.
-//  Copyright © 2016年 apple. All rights reserved.
+//  Created by 王 原闯 on 14-8-4.
+//  Copyright (c) 2014年 Coding. All rights reserved.
 //
-
 #define kCellIdentifier_Input_OnlyText_Cell_PhoneCode_Prefix @"Input_OnlyText_Cell_PhoneCode"
-
 
 #import "Input_OnlyText_Cell.h"
 #import "Coding_NetAPIManager.h"
 
-@interface Input_OnlyText_Cell()
-@property (nonatomic, strong) UIView *lineView;
-@property (nonatomic, strong) UIButton *clearBtn, *passwordBtn;
-@property (nonatomic, strong) UITapImageView *captchaView;
-@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+
+@interface Input_OnlyText_Cell ()
+
+@property (strong, nonatomic) UIView *lineView;
+@property (strong, nonatomic) UIButton *clearBtn, *passwordBtn;
+
+@property (strong, nonatomic) UITapImageView *captchaView;
+@property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
+
 @end
 
 @implementation Input_OnlyText_Cell
-
-+ (NSString *)randomCellIdentifierOfPhoneCodeType {
-    return [NSString stringWithFormat:@"%@_%ld", kCellIdentifier_Input_OnlyText_Cell_PhoneCode_Prefix,random()];
++ (NSString *)randomCellIdentifierOfPhoneCodeType{
+    return [NSString stringWithFormat:@"%@_%ld", kCellIdentifier_Input_OnlyText_Cell_PhoneCode_Prefix, random()];
 }
 
-
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
@@ -46,10 +47,9 @@
             }];
         }
         
-        
         if ([reuseIdentifier isEqualToString:kCellIdentifier_Input_OnlyText_Cell_Text]) {
             
-        }else if ([reuseIdentifier isEqualToString:kCellIdentifier_Input_OnlyText_Cell_Captcha]) {
+        }else if ([reuseIdentifier isEqualToString:kCellIdentifier_Input_OnlyText_Cell_Captcha]){
             __weak typeof(self) weakSelf = self;
             if (!_captchaView) {
                 _captchaView = [[UITapImageView alloc] initWithFrame:CGRectMake(kScreen_Width - 60 - kLoginPaddingLeftWidth, (44-25)/2, 60, 25)];
@@ -68,7 +68,7 @@
                     make.center.equalTo(self.captchaView);
                 }];
             }
-        }else if ([reuseIdentifier isEqualToString:kCellIdentifier_Input_OnlyText_Cell_Password]) {
+        }else if ([reuseIdentifier isEqualToString:kCellIdentifier_Input_OnlyText_Cell_Password]){
             if (!_passwordBtn) {
                 _textField.secureTextEntry = YES;
                 
@@ -77,13 +77,13 @@
                 [_passwordBtn addTarget:self action:@selector(passwordBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
                 [self.contentView addSubview:_passwordBtn];
             }
-        }else if ([reuseIdentifier hasPrefix:kCellIdentifier_Input_OnlyText_Cell_PhoneCode_Prefix]) {
+        }else if ([reuseIdentifier hasPrefix:kCellIdentifier_Input_OnlyText_Cell_PhoneCode_Prefix]){
             if (!_verify_codeBtn) {
                 _verify_codeBtn = [[PhoneCodeButton alloc] initWithFrame:CGRectMake(kScreen_Width - 80 - kLoginPaddingLeftWidth, (44-25)/2, 80, 25)];
                 [_verify_codeBtn addTarget:self action:@selector(phoneCodeButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
                 [self.contentView addSubview:_verify_codeBtn];
             }
-        }else if ([reuseIdentifier isEqualToString:kCellIdentifier_Input_OnlyText_Cell_Phone]) {
+        }else if ([reuseIdentifier isEqualToString:kCellIdentifier_Input_OnlyText_Cell_Phone]){
             _countryCodeL = ({
                 UILabel *label = [UILabel new];
                 label.font = [UIFont systemFontOfSize:17];
@@ -130,7 +130,7 @@
     return self;
 }
 
-- (void)prepareForReuse {
+- (void)prepareForReuse{
     self.isForLoginVC = NO;
     if (![self.reuseIdentifier isEqualToString:kCellIdentifier_Input_OnlyText_Cell_Password]) {
         self.textField.secureTextEntry = NO;
@@ -144,57 +144,29 @@
     self.phoneCodeBtnClckedBlock = nil;
 }
 
-
-- (void)setPlaceholder:(NSString *)phStr value:(NSString *)valueStr {
+- (void)setPlaceholder:(NSString *)phStr value:(NSString *)valueStr{
     self.textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:phStr? phStr: @"" attributes:@{NSForegroundColorAttributeName: [UIColor colorWithHexString:_isForLoginVC? @"0xffffff": @"0x999999" andAlpha:_isForLoginVC? 0.5: 1.0]}];
     self.textField.text = valueStr;
 }
 
-#pragma password
-
-- (void)passwordBtnClicked:(UIButton *)button {
-    _textField.secureTextEntry = !_textField.secureTextEntry;
-    [button setImage:[UIImage imageNamed:_textField.secureTextEntry? @"password_unlook" : @"password_look"] forState:UIControlStateNormal];
-}
-
-
-#pragma Captcha
-
-- (void)refreshCaptchaImage {
-    __weak typeof(self) weakSelf = self;
-    if (_activityIndicator.isAnimating) {
-        return;
-    }
-    
-    [_activityIndicator startAnimating];
-    [self.captchaView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@api/getCaptcha",[NSObject baseURLStr]]] placeholderImage:nil options:(SDWebImageRetryFailed | SDWebImageRefreshCached | SDWebImageHandleCookies) completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        [weakSelf.activityIndicator stopAnimating];
-    }];
-}
-
 #pragma mark Button
-
-- (void)phoneCodeButtonClicked:(id)sender {
-    if (self.phoneCodeBtnClckedBlock) {
-        self.phoneCodeBtnClckedBlock(sender);
-    }
-}
-
-- (void)countryCodeBtnClicked:(id)sender {
-    if (_countryCodeBtnClickedBlock) {
-        _countryCodeBtnClickedBlock();
-    }
-}
 
 - (void)clearBtnClicked:(id)sender {
     self.textField.text = @"";
     [self textValueChanged:nil];
-    
 }
 
-
+- (void)phoneCodeButtonClicked:(id)sender{
+    if (self.phoneCodeBtnClckedBlock) {
+        self.phoneCodeBtnClckedBlock(sender);
+    }
+}
+- (void)countryCodeBtnClicked:(id)sender{
+    if (_countryCodeBtnClickedBlock) {
+        _countryCodeBtnClickedBlock();
+    }
+}
 #pragma mark - UIView
-
 - (void)layoutSubviews {
     [super layoutSubviews];
     
@@ -210,23 +182,23 @@
                 make.right.equalTo(self.contentView).offset(-kLoginPaddingLeftWidth);
                 make.centerY.equalTo(self.contentView);
             }];
-            if (!_lineView) {
-                _lineView = [UIView new];
-                _lineView.backgroundColor = [UIColor colorWithHexString:@"0xffffff" andAlpha:0.5];
-                [self.contentView addSubview:_lineView];
-                [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.height.mas_equalTo(0.5);
-                    make.left.equalTo(self.contentView).offset(kLoginPaddingLeftWidth);
-                    make.right.equalTo(self.contentView).offset(-kLoginPaddingLeftWidth);
-                    make.bottom.equalTo(self.contentView);
-                }];
-            }
+        }
+        if (!_lineView) {
+            _lineView = [UIView new];
+            _lineView.backgroundColor = [UIColor colorWithHexString:@"0xffffff" andAlpha:0.5];
+            [self.contentView addSubview:_lineView];
+            [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.height.mas_equalTo(0.5);
+                make.left.equalTo(self.contentView).offset(kLoginPaddingLeftWidth);
+                make.right.equalTo(self.contentView).offset(-kLoginPaddingLeftWidth);
+                make.bottom.equalTo(self.contentView);
+            }];
         }
     }
     
-    self.backgroundColor = _isForLoginVC? [UIColor clearColor] : [UIColor whiteColor];
-    self.textField.clearButtonMode = _isForLoginVC? UITextFieldViewModeNever : UITextFieldViewModeWhileEditing;
-    self.textField.textColor = _isForLoginVC? [UIColor whiteColor] : kColor222;
+    self.backgroundColor = _isForLoginVC? [UIColor clearColor]: [UIColor whiteColor];
+    self.textField.clearButtonMode = _isForLoginVC? UITextFieldViewModeNever: UITextFieldViewModeWhileEditing;
+    self.textField.textColor = _isForLoginVC? [UIColor whiteColor]: kColor222;
     self.lineView.hidden = !_isForLoginVC;
     self.clearBtn.hidden = YES;
     
@@ -252,33 +224,50 @@
         offset -= self.isForLoginVC? 30: 0;
         make.right.equalTo(self.contentView).offset(offset);
     }];
-
 }
 
+#pragma password
+- (void)passwordBtnClicked:(UIButton *)button{
+    _textField.secureTextEntry = !_textField.secureTextEntry;
+    [button setImage:[UIImage imageNamed:_textField.secureTextEntry? @"password_unlook": @"password_look"] forState:UIControlStateNormal];
+}
+
+#pragma Captcha
+- (void)refreshCaptchaImage{
+    __weak typeof(self) weakSelf = self;
+    if (_activityIndicator.isAnimating) {
+        return;
+    }
+    [_activityIndicator startAnimating];
+    [self.captchaView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@api/getCaptcha", [NSObject baseURLStr]]] placeholderImage:nil options:(SDWebImageRetryFailed | SDWebImageRefreshCached | SDWebImageHandleCookies) completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        [weakSelf.activityIndicator stopAnimating];
+    }];
+}
 
 #pragma mark TextField
-
 - (void)editDidBegin:(id)sender {
     self.lineView.backgroundColor = [UIColor whiteColor];
-    self.clearBtn.hidden = _isForLoginVC? self.textField.text.length <=0 : YES;
+    self.clearBtn.hidden = _isForLoginVC? self.textField.text.length <= 0: YES;
+    
     if (self.editDidBeginBlock) {
         self.editDidBeginBlock(self.textField.text);
-    }
-}
-
-- (void)textValueChanged:(id)sender {
-    self.clearBtn.hidden = _isForLoginVC? self.textField.text.length <= 0 : YES;
-    if (self.textValueChangedBlock) {
-        self.textValueChangedBlock(self.textField.text);
     }
 }
 
 - (void)editDidEnd:(id)sender {
     self.lineView.backgroundColor = [UIColor colorWithHexString:@"0xffffff" andAlpha:0.5];
     self.clearBtn.hidden = YES;
+    
     if (self.editDidEndBlock) {
         self.editDidEndBlock(self.textField.text);
     }
 }
 
+- (void)textValueChanged:(id)sender {
+    self.clearBtn.hidden = _isForLoginVC? self.textField.text.length <= 0: YES;
+    
+    if (self.textValueChangedBlock) {
+        self.textValueChangedBlock(self.textField.text);
+    }
+}
 @end

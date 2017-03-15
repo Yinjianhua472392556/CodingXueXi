@@ -638,6 +638,11 @@
 		18C41DED1E73D77100B3A328 /* NSDate+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C41DEC1E73D77100B3A328 /* NSDate+Convenience.m */; };
 		18C41DF21E73D80E00B3A328 /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C41DF01E73D80E00B3A328 /* NSDate+Helper.m */; };
 		18C41DF31E73D80E00B3A328 /* README.textile in Resources */ = {isa = PBXBuildFile; fileRef = 18C41DF11E73D80E00B3A328 /* README.textile */; };
+		18C41DF61E7688EB00B3A328 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C41DF51E7688EB00B3A328 /* RegisterViewController.m */; };
+		18C41DF91E76899600B3A328 /* Register.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C41DF81E76899600B3A328 /* Register.m */; };
+		18C41DFC1E769DBF00B3A328 /* UIBarButtonItem+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C41DFB1E769DBF00B3A328 /* UIBarButtonItem+Common.m */; };
+		18C41DFF1E77994700B3A328 /* UITTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C41DFE1E77994700B3A328 /* UITTTAttributedLabel.m */; };
+		18C41E051E77CE6600B3A328 /* UIButton+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C41E041E77CE6600B3A328 /* UIButton+Common.m */; };
 		18FF5A461E120D1600109697 /* TweetDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FF5A451E120D1600109697 /* TweetDetailViewController.m */; };
 		18FF5A491E120D9B00109697 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FF5A481E120D9B00109697 /* Tweet.m */; };
 		18FF5A4C1E120DC800109697 /* Tweets.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FF5A4B1E120DC800109697 /* Tweets.m */; };
@@ -1336,6 +1341,16 @@
 		18C41DEF1E73D80E00B3A328 /* NSDate+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Helper.h"; sourceTree = "<group>"; };
 		18C41DF01E73D80E00B3A328 /* NSDate+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Helper.m"; sourceTree = "<group>"; };
 		18C41DF11E73D80E00B3A328 /* README.textile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.textile; sourceTree = "<group>"; };
+		18C41DF41E7688EB00B3A328 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		18C41DF51E7688EB00B3A328 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		18C41DF71E76899600B3A328 /* Register.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Register.h; sourceTree = "<group>"; };
+		18C41DF81E76899600B3A328 /* Register.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Register.m; sourceTree = "<group>"; };
+		18C41DFA1E769DBF00B3A328 /* UIBarButtonItem+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Common.h"; sourceTree = "<group>"; };
+		18C41DFB1E769DBF00B3A328 /* UIBarButtonItem+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Common.m"; sourceTree = "<group>"; };
+		18C41DFD1E77994700B3A328 /* UITTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITTTAttributedLabel.h; sourceTree = "<group>"; };
+		18C41DFE1E77994700B3A328 /* UITTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITTTAttributedLabel.m; sourceTree = "<group>"; };
+		18C41E031E77CE6600B3A328 /* UIButton+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Common.h"; sourceTree = "<group>"; };
+		18C41E041E77CE6600B3A328 /* UIButton+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Common.m"; sourceTree = "<group>"; };
 		18FF5A441E120D1500109697 /* TweetDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetDetailViewController.h; sourceTree = "<group>"; };
 		18FF5A451E120D1600109697 /* TweetDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetDetailViewController.m; sourceTree = "<group>"; };
 		18FF5A471E120D9B00109697 /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
@@ -2357,6 +2372,8 @@
 			children = (
 				18FF5A601E124C1200109697 /* UITapImageView.h */,
 				18FF5A611E124C1200109697 /* UITapImageView.m */,
+				18C41DFD1E77994700B3A328 /* UITTTAttributedLabel.h */,
+				18C41DFE1E77994700B3A328 /* UITTTAttributedLabel.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -2408,6 +2425,10 @@
 				18FF5A641E12662D00109697 /* UIButton+Bootstrap.m */,
 				18AE389E1E16596100B3B114 /* UITableView+Common.h */,
 				18AE389F1E16596100B3B114 /* UITableView+Common.m */,
+				18C41DFA1E769DBF00B3A328 /* UIBarButtonItem+Common.h */,
+				18C41DFB1E769DBF00B3A328 /* UIBarButtonItem+Common.m */,
+				18C41E031E77CE6600B3A328 /* UIButton+Common.h */,
+				18C41E041E77CE6600B3A328 /* UIButton+Common.m */,
 			);
 			path = OC_Category;
 			sourceTree = "<group>";
@@ -2439,6 +2460,8 @@
 				18FF5A4B1E120DC800109697 /* Tweets.m */,
 				18FF5A4D1E12110500109697 /* Project.h */,
 				18FF5A4E1E12110500109697 /* Project.m */,
+				18C41DF71E76899600B3A328 /* Register.h */,
+				18C41DF81E76899600B3A328 /* Register.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2487,6 +2510,8 @@
 				187277FD1E00063400C401D1 /* IntroductionViewController.m */,
 				189C30CB1E08C34D00438E5D /* LoginViewController.h */,
 				189C30CC1E08C34D00438E5D /* LoginViewController.m */,
+				18C41DF41E7688EB00B3A328 /* RegisterViewController.h */,
+				18C41DF51E7688EB00B3A328 /* RegisterViewController.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -3377,6 +3402,7 @@
 				18C41DED1E73D77100B3A328 /* NSDate+Convenience.m in Sources */,
 				18B473681E71373C00697FF6 /* MJPhotoView.m in Sources */,
 				18B4736A1E71373C00697FF6 /* UIImageView+MJWebCache.m in Sources */,
+				18C41DFF1E77994700B3A328 /* UITTTAttributedLabel.m in Sources */,
 				18B1E1FB1DF81947000503AA /* CodingNetAPIClient.m in Sources */,
 				18FF5A461E120D1600109697 /* TweetDetailViewController.m in Sources */,
 				18B1E22F1DF9633F000503AA /* Coding_NetAPIManager.m in Sources */,
@@ -3391,6 +3417,7 @@
 				18B1E2321DF96377000503AA /* UnReadManager.m in Sources */,
 				18FF5A5C1E1248FE00109697 /* Input_OnlyText_Cell.m in Sources */,
 				18B473671E71373B00697FF6 /* MJPhotoToolbar.m in Sources */,
+				18C41DF91E76899600B3A328 /* Register.m in Sources */,
 				18B1E2351DF96C3A000503AA /* UIView+Common.m in Sources */,
 				18B1E2041DF8FA1B000503AA /* NSObject+ObjectMap.m in Sources */,
 				18B1E21F1DF93E4D000503AA /* EasePageViewController.m in Sources */,
@@ -3398,12 +3425,14 @@
 				18B1E1F81DF817D0000503AA /* UIColor+expanded.m in Sources */,
 				18FF5A621E124C1200109697 /* UITapImageView.m in Sources */,
 				18B1E1571DF79C4F000503AA /* AppDelegate.m in Sources */,
+				18C41E051E77CE6600B3A328 /* UIButton+Common.m in Sources */,
 				18B1E2161DF9391F000503AA /* MyTask_RootViewController.m in Sources */,
 				18B473421E7012BC00697FF6 /* JDStatusBarNotification.m in Sources */,
 				18B1E20D1DF9362F000503AA /* BaseNavigationController.m in Sources */,
 				18FF5A4C1E120DC800109697 /* Tweets.m in Sources */,
 				18B473471E70E19100697FF6 /* HtmlMedia.m in Sources */,
 				18B473661E71373B00697FF6 /* MJPhotoProgressView.m in Sources */,
+				18C41DFC1E769DBF00B3A328 /* UIBarButtonItem+Common.m in Sources */,
 				18B1E2101DF938A3000503AA /* BaseViewController.m in Sources */,
 				18B473441E7012BC00697FF6 /* JDStatusBarView.m in Sources */,
 				18C41DE71E73A6E100B3A328 /* NSURL+Common.m in Sources */,
@@ -3417,6 +3446,7 @@
 				18FF5A651E12662D00109697 /* UIButton+Bootstrap.m in Sources */,
 				18B1E2261DF94ACF000503AA /* Tweet_RootViewController.m in Sources */,
 				18B473611E71373B00697FF6 /* MBProgressHUD+Add.m in Sources */,
+				18C41DF61E7688EB00B3A328 /* RegisterViewController.m in Sources */,
 				187277FE1E00063400C401D1 /* IntroductionViewController.m in Sources */,
 				18B1E1541DF79C4F000503AA /* main.m in Sources */,
 				18B1E2131DF93906000503AA /* Project_RootViewController.m in Sources */,

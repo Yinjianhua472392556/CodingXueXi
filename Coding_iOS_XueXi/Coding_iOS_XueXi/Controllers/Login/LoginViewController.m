@@ -15,6 +15,7 @@
 #import <NYXImagesKit/NYXImagesKit.h>
 #import <UIImage+BlurredFrame/UIImage+BlurredFrame.h>
 #import "AppDelegate.h"
+#import "RegisterViewController.h"
 
 @interface LoginViewController ()
 @property (nonatomic, strong) Login *myLogin;
@@ -461,6 +462,10 @@
 }
 
 
+- (void)goRegisterVC:(id)sender {
+    RegisterViewController *vc = [RegisterViewController vcWithMethodType:RegisterMethodPhone registerObj:nil];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 #pragma mark 2FA
 

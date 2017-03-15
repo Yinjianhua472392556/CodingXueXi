@@ -10,4 +10,10 @@
 
 @implementation UIBarButtonItem (Common)
 
++ (UIBarButtonItem *)itemWithBtnTitle:(NSString *)title target:(id)obj action:(SEL)selector {
+    UIBarButtonItem * buttonItem = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStylePlain target:obj action:selector];
+    [buttonItem setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor lightGrayColor]} forState:UIControlStateDisabled];
+    return buttonItem;
+}
+
 @end

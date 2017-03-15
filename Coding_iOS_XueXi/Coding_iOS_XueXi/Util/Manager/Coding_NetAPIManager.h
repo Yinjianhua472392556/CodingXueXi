@@ -28,4 +28,7 @@
                       andBlock:(void (^)(id data, NSError *error))block;
 - (void)request_SendActivateEmail:(NSString *)email
                             block:(void (^)(id data, NSError *error))block;
+
+- (void)request_Register_V2_WithParams:(NSDictionary *)params
+                              andBlock:(void (^)(id data, NSError *error))block;
 @end

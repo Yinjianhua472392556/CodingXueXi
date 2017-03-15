@@ -10,4 +10,7 @@
 
 @interface UIButton (Common)
 
+//开始请求时，UIActivityIndicatorView 提示
+- (void)startQueryAnimate;
+- (void)stopQueryAnimate;
 @end

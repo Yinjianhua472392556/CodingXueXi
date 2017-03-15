@@ -7,7 +7,13 @@
 //
 
 #import "BaseViewController.h"
+#import "Register.h"
+
+typedef NS_ENUM(NSUInteger, RegisterMethodType) {
+    RegisterMethodEamil = 0,
+    RegisterMethodPhone,
+};
 
 @interface RegisterViewController : BaseViewController
-
++ (instancetype)vcWithMethodType:(RegisterMethodType)methodType registerObj:(Register *)obj;
 @end

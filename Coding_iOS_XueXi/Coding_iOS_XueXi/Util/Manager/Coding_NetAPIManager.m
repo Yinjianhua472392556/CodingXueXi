@@ -102,4 +102,21 @@
     }];
 }
 
+- (void)request_Register_V2_WithParams:(NSDictionary *)params andBlock:(void (^)(id, NSError *))block {
+    NSString *path = @"api/v2/account/register";
+    [[CodingNetAPIClient sharedJsonClient] requestJsonDataWithPath:path withParams:params withMethodType:Post andBlock:^(id data, NSError *error) {
+        id resultData = [data valueForKeyPath:@"data"];
+        if (resultData) {
+            User *curLoginUser = [NSObject objectOfClass:@"User" fromJSON:resultData];
+            if (curLoginUser) {
+                [Login doLogin:resultData];
+            }
+            block(curLoginUser, nil);
+        }else {
+            block(nil, error);
+        }
+    }];
+
+}
+
 @end

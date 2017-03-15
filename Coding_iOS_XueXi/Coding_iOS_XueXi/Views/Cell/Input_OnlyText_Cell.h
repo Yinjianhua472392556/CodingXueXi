@@ -17,19 +17,18 @@
 #import "UITapImageView.h"
 
 @interface Input_OnlyText_Cell : UITableViewCell
-@property (nonatomic, strong, readonly) UITextField *textField;
-@property (nonatomic, strong) UILabel *countryCodeL;
-@property (nonatomic, strong, readonly) PhoneCodeButton *verify_codeBtn;
+@property (strong, nonatomic, readonly) UITextField *textField;
+@property (strong, nonatomic) UILabel *countryCodeL;
+@property (strong, nonatomic, readonly) PhoneCodeButton *verify_codeBtn;
 
-@property (nonatomic, assign) BOOL isForLoginVC;
+@property (assign, nonatomic) BOOL isForLoginVC;
 
-@property (nonatomic, copy) void (^textValueChangedBlock)(NSString *);
-@property (nonatomic, copy) void (^editDidBeginBlock)(NSString *);
-@property (nonatomic, copy) void (^editDidEndBlock)(NSString *);
+@property (nonatomic,copy) void(^textValueChangedBlock)(NSString *);
+@property (nonatomic,copy) void(^editDidBeginBlock)(NSString *);
+@property (nonatomic,copy) void(^editDidEndBlock)(NSString *);
 @property (nonatomic,copy) void(^phoneCodeBtnClckedBlock)(PhoneCodeButton *);
 @property (nonatomic,copy) void(^countryCodeBtnClickedBlock)();
 
 - (void)setPlaceholder:(NSString *)phStr value:(NSString *)valueStr;
-
 + (NSString *)randomCellIdentifierOfPhoneCodeType;
 @end
