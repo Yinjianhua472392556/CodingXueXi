@@ -16,6 +16,7 @@
 #import <UIImage+BlurredFrame/UIImage+BlurredFrame.h>
 #import "AppDelegate.h"
 #import "RegisterViewController.h"
+#import "CannotLoginViewController.h"
 
 @interface LoginViewController ()
 @property (nonatomic, strong) Login *myLogin;
@@ -368,6 +369,17 @@
 
 
 #pragma mark Btn Clicked
+
+- (void)cannotLoginBtnClicked:(id)sender {
+    UIViewController *vc;
+    if (_is2FAUI) {
+        
+    }else {
+        vc = [CannotLoginViewController vcWithMethodType:CannotLoginMethodEamil stepIndex:0 userStr:(([self.myLogin.email isPhoneNo] || [self.myLogin.email isEmail])? self.myLogin.email: nil)];
+    }
+    
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 - (void)sendLogin {
     NSString *tipMsg = self.is2FAUI? [self loginTipFor2FA] : [_myLogin goToLoginTipWithCaptcha:_captchaNeeded];

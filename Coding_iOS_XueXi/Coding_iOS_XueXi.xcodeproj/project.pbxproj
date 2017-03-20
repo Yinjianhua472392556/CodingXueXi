@@ -643,6 +643,7 @@
 		18C41DFC1E769DBF00B3A328 /* UIBarButtonItem+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C41DFB1E769DBF00B3A328 /* UIBarButtonItem+Common.m */; };
 		18C41DFF1E77994700B3A328 /* UITTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C41DFE1E77994700B3A328 /* UITTTAttributedLabel.m */; };
 		18C41E051E77CE6600B3A328 /* UIButton+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C41E041E77CE6600B3A328 /* UIButton+Common.m */; };
+		18C41E301E7BB84E00B3A328 /* CannotLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C41E2F1E7BB84E00B3A328 /* CannotLoginViewController.m */; };
 		18FF5A461E120D1600109697 /* TweetDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FF5A451E120D1600109697 /* TweetDetailViewController.m */; };
 		18FF5A491E120D9B00109697 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FF5A481E120D9B00109697 /* Tweet.m */; };
 		18FF5A4C1E120DC800109697 /* Tweets.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FF5A4B1E120DC800109697 /* Tweets.m */; };
@@ -1351,6 +1352,8 @@
 		18C41DFE1E77994700B3A328 /* UITTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITTTAttributedLabel.m; sourceTree = "<group>"; };
 		18C41E031E77CE6600B3A328 /* UIButton+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Common.h"; sourceTree = "<group>"; };
 		18C41E041E77CE6600B3A328 /* UIButton+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Common.m"; sourceTree = "<group>"; };
+		18C41E2E1E7BB84E00B3A328 /* CannotLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CannotLoginViewController.h; sourceTree = "<group>"; };
+		18C41E2F1E7BB84E00B3A328 /* CannotLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CannotLoginViewController.m; sourceTree = "<group>"; };
 		18FF5A441E120D1500109697 /* TweetDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetDetailViewController.h; sourceTree = "<group>"; };
 		18FF5A451E120D1600109697 /* TweetDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetDetailViewController.m; sourceTree = "<group>"; };
 		18FF5A471E120D9B00109697 /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
@@ -2512,6 +2515,8 @@
 				189C30CC1E08C34D00438E5D /* LoginViewController.m */,
 				18C41DF41E7688EB00B3A328 /* RegisterViewController.h */,
 				18C41DF51E7688EB00B3A328 /* RegisterViewController.m */,
+				18C41E2E1E7BB84E00B3A328 /* CannotLoginViewController.h */,
+				18C41E2F1E7BB84E00B3A328 /* CannotLoginViewController.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -3396,6 +3401,7 @@
 				18FF5A4F1E12110500109697 /* Project.m in Sources */,
 				18FF5A491E120D9B00109697 /* Tweet.m in Sources */,
 				18B473711E71380F00697FF6 /* YLImageView.m in Sources */,
+				18C41E301E7BB84E00B3A328 /* CannotLoginViewController.m in Sources */,
 				18B473641E71373B00697FF6 /* MJPhotoBrowser.m in Sources */,
 				18FF5A5F1E124BD600109697 /* PhoneCodeButton.m in Sources */,
 				18B1E2011DF8F4E5000503AA /* User.m in Sources */,
