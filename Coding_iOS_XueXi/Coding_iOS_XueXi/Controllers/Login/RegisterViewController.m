@@ -16,6 +16,7 @@
 #import "Coding_NetAPIManager.h"
 #import "Input_OnlyText_Cell.h"
 #import "UITableView+Common.h"
+#import "CountryCodeListViewController.h"
 
 @interface RegisterViewController ()<UITableViewDelegate, UITableViewDataSource, TTTAttributedLabelDelegate>
 @property (nonatomic, assign) RegisterMethodType medthodType;
@@ -377,14 +378,24 @@
 #pragma mark TTTAttributedLabelDelegate
 
 - (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithTransitInformation:(NSDictionary *)components {
-
+    [self gotoServiceTermsVC];
 }
 
 
 #pragma mark VC
 
-- (void)goToCountryCodeVC {
+- (void)gotoServiceTermsVC {
 
+}
+
+
+- (void)goToCountryCodeVC {
+    __weak typeof(self) weakSelf = self;
+    CountryCodeListViewController *vc = [CountryCodeListViewController new];
+    vc.selectedBlock = ^(NSDictionary *countryCodeDict) {
+        weakSelf.countryCodeDict = countryCodeDict;
+    };
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

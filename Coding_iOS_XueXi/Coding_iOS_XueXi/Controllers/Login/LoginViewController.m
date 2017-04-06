@@ -101,6 +101,9 @@
                 [weakSelf refreshIconUserImage];
                 [weakSelf.myTableView reloadData];
             };
+            UITableViewCell *cell = [_myTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+            [tipsView setY:CGRectGetMaxY(cell.frame) - 0.5];
+            [_myTableView addSubview:tipsView];
             tipsView;
         });
     }

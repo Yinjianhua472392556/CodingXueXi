@@ -7,6 +7,9 @@
 //
 
 #import "BaseViewController.h"
+#import "ODRefreshControl.h"
+#import "Tweets.h"
+
 
 typedef NS_ENUM(NSUInteger, Tweet_RootViewControllerType){
     Tweet_RootViewControllerTypeAll = 0,

@@ -47,6 +47,7 @@
 #define kColorDDD [UIColor colorWithHexString:@"0xDDDDDD"]
 
 #define kColor999 [UIColor colorWithHexString:@"0x999999"]
+#define kColor666 [UIColor colorWithHexString:@"0x666666"]
 
 #define kColorNavBG [UIColor colorWithHexString:@"0xF8F8F8"]
 #define kColorBrandGreen [UIColor colorWithHexString:@"0x3BBD79"]
