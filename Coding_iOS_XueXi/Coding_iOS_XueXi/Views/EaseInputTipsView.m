@@ -61,6 +61,11 @@
 
 #pragma mark SetM
 
+- (void)setActive:(BOOL)active {
+    _active = active;
+    self.hidden = self.dataList.count <= 0 || !_active;
+}
+
 
 - (void)setValueStr:(NSString *)valueStr {
     _valueStr = valueStr;
