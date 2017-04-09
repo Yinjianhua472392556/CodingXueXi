@@ -11,7 +11,7 @@
 #import "Tweets.h"
 
 
-typedef NS_ENUM(NSUInteger, Tweet_RootViewControllerType){
+typedef NS_ENUM(NSUInteger, Tweet_RootViewControllerType) {
     Tweet_RootViewControllerTypeAll = 0,
     Tweet_RootViewControllerTypeFriend,
     Tweet_RootViewControllerTypeHot,

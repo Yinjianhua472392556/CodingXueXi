@@ -10,28 +10,55 @@
 
 @interface Tweet_RootViewController ()
 
+@property (nonatomic, strong) UITableView *myTableView;
+@property (nonatomic, strong) ODRefreshControl *refreshControl;
+
+@property (nonatomic, assign) NSInteger curIndex;
+@property (nonatomic, strong) NSMutableDictionary *tweetsDict;
 @end
 
 @implementation Tweet_RootViewController
 
++ (instancetype)newTweetVCWithType:(Tweet_RootViewControllerType)type {
+    Tweet_RootViewController *vc = [[Tweet_RootViewController alloc] init];
+    vc.curIndex = type;
+    return vc;
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _curIndex = 0;
+        _tweetsDict = [[NSMutableDictionary alloc] initWithCapacity:4];
+    }
+    
+    return self;
+}
+
+
+#pragma mark TabBar
+
+- (void)tabBarItemClicked {
+    [super tabBarItemClicked];
+    if (_myTableView.contentOffset.y > 0) {
+        [_myTableView setContentOffset:CGPointZero animated:YES];
+    }else if (!self.refreshControl.isAnimating) {
+        [self.refreshControl beginRefreshing];
+        [self.myTableView setContentOffset:CGPointMake(0, -44)];
+        [self refresh];
+    }
+}
+
+
+#pragma mark lifeCycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
-/*
-#pragma mark - Navigation
+#pragma mark Banner
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
